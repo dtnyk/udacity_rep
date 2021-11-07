@@ -19,8 +19,7 @@ jobs:
           command: |
             aws cloudformation deploy \
               --template-file template.yml \
-              --stack-name myStack \
-              --region us-east-1
+              --stack-name myStack
       # Fail the job intentionally to simulate an error .
       # Uncomment the line below if you want to fail the current step
       # - run: return 1

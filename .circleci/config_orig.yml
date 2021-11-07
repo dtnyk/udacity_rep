@@ -24,3 +24,10 @@ workflows:
   say-hello-workflow:
     jobs:
       - say-hello
+
+
+
+            aws cloudformation deploy \
+              --template-file template.yml \
+              --stack-name myStack \
+              --region us-east-1
