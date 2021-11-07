@@ -8,24 +8,23 @@ orbs:
   aws-cli: circleci/aws-cli@2.0.3
 # Orchestrate or schedule a set of jobs
   # Exercise: Infrastructure Creation
-  create_infrastructure: 
-    docker:
-      - image: amazon/aws-cli
-    steps:
-      - checkout
-      - run:
-          name: Create Cloudformation Stack
-          command: |
-            aws cloudformation deploy \
-              --template-file template.yml \
-              --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5} \
-              --region us-east-1b
-      # Fail the job intentionally to simulate an error.
-      # Uncomment the line below if you want to fail the current step
-      # - run: return 1
+  jobs:
+    create_infrastructure: 
+      docker:
+        - image: amazon/aws-cli
+      steps:
+        - checkout
+        - run:
+            name: Create Cloudformation Stack
+            command: |
+              aws cloudformation deploy \
+                --template-file template.yml \
+                --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5} \
+                --region us-east-1b
+        # Fail the job intentionally to simulate an error.
+        # Uncomment the line below if you want to fail the current step
+        # - run: return 1
  
-
-
 workflows:
   # Name the workflow "welcome"
   my_workflow:
