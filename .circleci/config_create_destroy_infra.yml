@@ -22,11 +22,11 @@ commands:
     steps:
       - run:
           name: Destroy environment
-           ${CIRCLE_WORKFLOW_ID} # is a Built-in environment variable 
-           ${CIRCLE_WORKFLOW_ID:0:5} #takes the first 5 chars of the variable CIRCLE_CI_WORKFLOW_ID 
+           #${CIRCLE_WORKFLOW_ID} # is a Built-in environment variable 
+           #${CIRCLE_WORKFLOW_ID:0:5} #takes the first 5 chars of the variable CIRCLE_CI_WORKFLOW_ID 
           when: on_fail
           command: |
-            aws cloudformation delete-stack --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5} --region us-east-1
+            aws cloudformation delete-stack --stack-name TEST --region us-east-1
           
   # Exercise: Infrastructure Creation
 jobs:
@@ -40,7 +40,7 @@ jobs:
           command: |
             aws cloudformation deploy \
               --template-file template.yml \
-              --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5}ST \
+              --stack-name TEST \
               --region us-east-1
       # Fail the job intentionally to simulate an error .
       # Uncomment the line below if you want to fail the current step
